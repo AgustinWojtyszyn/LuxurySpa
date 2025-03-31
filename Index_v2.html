@@ -3,119 +3,250 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luxury Spa</title>
-    <link rel="stylesheet" href="styles/styles_v2.css">
+    <title>Luxury Spa | Bienestar Premium</title>
+    <!-- CDNs -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables */
+        :root {
+            --primary: #8B6B61; /* Terracota */
+            --secondary: #D4B8A7; /* Beige */
+            --dark: #3E2D2D; /* Marrón oscuro */
+            --light: #F8F4F1; /* Beige claro */
+        }
+
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark);
+            background-color: var(--light);
+            padding-top: 80px;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: var(--dark);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            color: var(--light);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://sojospaclub.com/wp-content/uploads/2022/12/Copy-of-SoJo-Spa-Club-Hydrotherapy-Pool-at-Night.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 2rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            margin-top: 2rem;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--dark);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+            }
+
+            .mobile-menu {
+                display: block;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+        }
+    </style>
 </head>
 <body>
-
-    <!-- Barra de Navegación -->
+    <!-- Navbar -->
     <nav class="navbar">
-        <div class="navbar-content">
-            <a href="#" class="navbar-logo">Luxury Spa</a>
-            <ul class="navbar-links">
-                <li><a href="#about">Sobre Nosotros</a></li>
-                <li><a href="#testimonials">Testimonios</a></li>
-                <li><a href="#services">Servicios</a></li>
-                <li><a href="#reservations">Reservas</a></li>
-                <li><a href="#contact">Contacto</a></li>
+        <div class="navbar-container">
+            <a href="#" class="logo">
+                <i class="fas fa-spa logo-icon"></i>
+                Luxury Spa
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about"><i class="fas fa-info-circle"></i> Sobre Nosotros</a></li>
+                <li><a href="#services"><i class="fas fa-spa"></i> Servicios</a></li>
+                <li><a href="#reservations"><i class="fas fa-calendar-alt"></i> Reservas</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> Contacto</a></li>
             </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
     </nav>
 
-    <!-- Encabezado -->
-    <header class="header">
-        <div class="header-content">
-            <h1>Bienvenido a Luxury Spa</h1>
-            <p>Tu bienestar es nuestra prioridad</p>
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Tu lugar de Relajación</h1>
+            <p class="hero-subtitle">Descubre tratamientos personalizados para tu bienestar</p>
+            <a href="#reservations" class="cta-button">Reservar Ahora</a>
         </div>
     </header>
 
-    <!-- Sección sobre nosotros -->
-    <section id="about" class="about">
-        <h2>Sobre Nosotros</h2>
-        <p>En <strong>Luxury Spa</strong>, ofrecemos experiencias de relajación diseñadas para tu bienestar.</p>
-        <img src="https://www.bedfordlodgehotelspa.co.uk/wp-content/uploads/2022/11/De-stress-image--scaled.jpg" alt="Spa de relajación" class="about-image">
-    </section>
+    <!-- Secciones de contenido -->
+    <main>
+        <section id="about">
+            <h2>Sobre Nosotros</h2>
+            <p>En Luxury Spa ofrecemos experiencias de relajación premium.</p>
+        </section>
 
-    <!-- Sección de Testimonios -->
-    <section id="testimonials" class="testimonios">
-        <h2>Testimonios</h2>
-        <div class="testimonio"><p><strong>Ana García:</strong> “Una experiencia increíble.”</p></div>
-        <div class="testimonio"><p><strong>Juan Pérez:</strong> “El tratamiento facial fue espectacular.”</p></div>
-        <div class="testimonio"><p><strong>Carlos López:</strong> “El masaje me dejó como nuevo.”</p></div>
-        <div class="testimonio"><p><strong>María Fernanda:</strong> “El spa tiene un ambiente único.”</p></div>
-        <div class="testimonio"><p><strong>Lucas Ramírez:</strong> “Lo mejor para desconectar del estrés.”</p></div>
-    </section>
+        <section id="services">
+            <h2>Nuestros Servicios</h2>
+            <!-- Lista de servicios -->
+        </section>
 
-    <!-- Sección de Servicios -->
-    <section id="services" class="services">
-        <h2>Servicios</h2>
-        <div class="service">
-            <h3>Masaje Relajante</h3>
-            <p>Alivia el estrés con un masaje suave y terapéutico.</p>
-        </div>
-        <div class="service">
-            <h3>Masaje Terapéutico</h3>
-            <p>Tratamiento para aliviar dolores musculares y mejorar la circulación.</p>
-        </div>
-        <div class="service">
-            <h3>Tratamiento Facial</h3>
-            <p>Rejuvenece tu piel con nuestros faciales personalizados.</p>
-        </div>
-        <div class="service">
-            <h3>Sauna y Jacuzzi</h3>
-            <p>Relájate en nuestra zona de spa con sauna y jacuzzi.</p>
-        </div>
-        <div class="service">
-            <h3>Manicura y Pedicura</h3>
-            <p>Renueva tus manos y pies con nuestros tratamientos completos.</p>
-        </div>
-        <div class="service">
-            <h3>Masaje de Piedras Calientes</h3>
-            <p>Reduce la tensión muscular con piedras volcánicas calientes.</p>
-        </div>
-    </section>
+        <section id="reservations">
+            <h2>Reservas</h2>
+            <form id="reservation-form">
+                <input type="text" placeholder="Nombre" required>
+                <input type="email" placeholder="Email" required>
+                <button type="submit">Reservar</button>
+            </form>
+        </section>
 
-    <!-- Sección de Reservas -->
-    <section id="reservations" class="reservas">
-        <h2>Reservas</h2>
-        <form>
-            <input type="text" name="nombre" placeholder="Tu nombre" required>
-            <input type="email" name="email" placeholder="Tu email" required>
-            <input type="date" name="fecha" required>
-            <input type="time" name="hora" required>
+        <section id="contact">
+            <h2>Contacto</h2>
+            <!-- Formulario de contacto -->
+        </section>
+    </main>
 
-            <label for="servicio">Selecciona tu servicio:</label>
-            <select name="servicio" id="servicio" required>
-                <option value="">Selecciona un servicio</option>
-                <option value="masaje_relajante">Masaje Relajante</option>
-                <option value="masaje_terapeutico">Masaje Terapéutico</option>
-                <option value="tratamiento_facial">Tratamiento Facial</option>
-                <option value="sauna_jacuzzi">Sauna y Jacuzzi</option>
-                <option value="manicura_pedicura">Manicura y Pedicura</option>
-                <option value="masaje_piedras_calientes">Masaje de Piedras Calientes</option>
-            </select>
+    <script>
+        // Mobile Menu
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuBtn = document.querySelector('.mobile-menu');
+            const navLinks = document.querySelector('.nav-links');
 
-            <button type="submit">Reservar</button>
-        </form>
-    </section>
+            // Toggle menu
+            if(mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                });
+            }
 
-    <!-- Sección de Contacto -->
-    <section id="contact" class="contact">
-        <h2>Contacto</h2>
-        <form>
-            <input type="text" name="name" placeholder="Tu nombre" required>
-            <input type="email" name="email" placeholder="Tu email" required>
-            <textarea name="message" placeholder="Tu mensaje" required></textarea>
-            <button type="submit">Enviar</button>
-        </form>
-    </section>
+            // Smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
 
-    <!-- Pie de página -->
-    <footer>
-        <p>&copy; 2024 Luxury Spa. Todos los derechos reservados.</p>
-    </footer>
+            // Navbar scroll effect
+            window.addEventListener('scroll', () => {
+                const navbar = document.querySelector('.navbar');
+                if (navbar) {
+                    if (window.scrollY > 50) {
+                        navbar.style.backgroundColor = 'rgba(62, 45, 45, 0.95)';
+                        navbar.style.padding = '0.5rem 2rem';
+                    } else {
+                        navbar.style.backgroundColor = 'var(--dark)';
+                        navbar.style.padding = '1rem 2rem';
+                    }
+                }
+            });
 
+            // Form handling
+            const reservationForm = document.getElementById('reservation-form');
+            if (reservationForm) {
+                reservationForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    alert('Reserva enviada con éxito. Nos pondremos en contacto contigo.');
+                    reservationForm.reset();
+                });
+            }
+        });
+    </script>
 </body>
 </html>
