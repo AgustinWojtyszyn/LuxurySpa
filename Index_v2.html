@@ -14,6 +14,7 @@
             --secondary: #D4B8A7; /* Beige */
             --dark: #3E2D2D; /* Marrón oscuro */
             --light: #F8F4F1; /* Beige claro */
+            --accent: #C19A6B; /* Oro viejo */
         }
 
         /* Reset */
@@ -28,6 +29,17 @@
             color: var(--dark);
             background-color: var(--light);
             padding-top: 80px;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         /* Navbar */
@@ -39,6 +51,12 @@
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0.5rem 2rem;
+            background-color: rgba(62, 45, 45, 0.98);
         }
 
         .navbar-container {
@@ -57,6 +75,11 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            transition: transform 0.3s;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         .nav-links {
@@ -68,19 +91,37 @@
         .nav-links a {
             color: var(--light);
             text-decoration: none;
-            transition: color 0.3s;
+            transition: all 0.3s;
             display: flex;
             align-items: center;
             gap: 8px;
+            position: relative;
+            padding: 0.5rem 0;
         }
 
         .nav-links a:hover {
             color: var(--secondary);
         }
 
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
         /* Hero Section */
         .hero {
             height: 100vh;
+            min-height: 600px;
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
                         url('https://sojospaclub.com/wp-content/uploads/2022/12/Copy-of-SoJo-Spa-Club-Hydrotherapy-Pool-at-Night.jpg') center/cover no-repeat;
             display: flex;
@@ -89,16 +130,24 @@
             text-align: center;
             color: white;
             padding: 0 2rem;
+            position: relative;
         }
 
         .hero-content {
             max-width: 800px;
+            animation: fadeInUp 1s ease-out;
         }
 
         .hero h1 {
-            font-family: 'Playfair Display', serif;
             font-size: 3.5rem;
             margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
         .cta-button {
@@ -110,11 +159,282 @@
             text-decoration: none;
             margin-top: 2rem;
             transition: all 0.3s;
+            font-weight: 600;
+            border: 2px solid transparent;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         .cta-button:hover {
-            background-color: var(--secondary);
+            background-color: transparent;
+            color: white;
+            border-color: var(--secondary);
             transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        /* About Section */
+        #about {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background-color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://drifttravel.com/wp-content/uploads/2023/01/TravMedia_USA_medium-sized_1547242_Relaxation_Area.jpg') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        #about .content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        #about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--dark);
+            position: relative;
+        }
+
+        #about h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: var(--primary);
+            margin: 1rem auto;
+        }
+
+        #about p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        /* Services Section */
+        #services {
+            background-color: var(--light);
+            text-align: center;
+        }
+
+        #services h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        #services h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: var(--primary);
+            margin: 1rem auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: left;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .service-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .service-content {
+            padding: 1.5rem;
+        }
+
+        .service-content h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .service-content p {
+            color: var(--dark);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .service-price {
+            font-weight: bold;
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        .book-service {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+
+        .book-service:hover {
+            background-color: var(--dark);
+        }
+
+        /* Reservations Section */
+        #reservations {
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), 
+                        url('https://drifttravel.com/wp-content/uploads/2023/01/TravMedia_USA_medium-sized_1547242_Relaxation_Area.jpg') center/cover;
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        #reservations h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--dark);
+        }
+
+        #reservation-form {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        #reservation-form input, 
+        #reservation-form select, 
+        #reservation-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        #reservation-form button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        #reservation-form button:hover {
+            background-color: var(--dark);
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+        }
+
+        #contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-info {
+            text-align: left;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .contact-info p {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: white;
+            background: rgba(255,255,255,0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Responsive */
@@ -129,6 +449,11 @@
                 flex-direction: column;
                 padding: 2rem;
                 gap: 1rem;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
             }
 
             .mobile-menu {
@@ -136,7 +461,31 @@
                 color: white;
                 font-size: 1.5rem;
                 cursor: pointer;
+                transition: transform 0.3s;
             }
+
+            .mobile-menu:hover {
+                transform: scale(1.1);
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+        }
+
+        /* Floating elements */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
         }
     </style>
 </head>
@@ -145,7 +494,7 @@
     <nav class="navbar">
         <div class="navbar-container">
             <a href="#" class="logo">
-                <i class="fas fa-spa logo-icon"></i>
+                <i class="fas fa-spa logo-icon floating" style="animation-delay: 0.2s"></i>
                 Luxury Spa
             </a>
             <ul class="nav-links">
@@ -163,58 +512,188 @@
     <!-- Hero Section -->
     <header class="hero">
         <div class="hero-content">
-            <h1>Tu lugar de Relajación</h1>
-            <p class="hero-subtitle">Descubre tratamientos personalizados para tu bienestar</p>
-            <a href="#reservations" class="cta-button">Reservar Ahora</a>
+            <h1>Tu Oasis de Relajación</h1>
+            <p class="hero-subtitle">Descubre tratamientos exclusivos diseñados para renovar tu cuerpo y mente</p>
+            <a href="#reservations" class="cta-button floating" style="animation-delay: 0.4s">
+                <i class="fas fa-calendar-alt"></i> Reservar Ahora
+            </a>
         </div>
     </header>
 
     <!-- Secciones de contenido -->
     <main>
+        <!-- About Section -->
         <section id="about">
-            <h2>Sobre Nosotros</h2>
-            <p>En Luxury Spa ofrecemos experiencias de relajación premium.</p>
+            <div class="content">
+                <h2>Sobre Luxury Spa</h2>
+                <p>En Luxury Spa, hemos creado un santuario donde el tiempo se detiene y el bienestar se convierte en una experiencia sublime. Nuestro equipo de terapeutas expertos combina técnicas ancestrales con innovadoras terapias para ofrecerte un viaje único de relajación y rejuvenecimiento.</p>
+                <p>Fundado en 2010, nuestro spa ha sido reconocido como uno de los mejores centros de bienestar de la región, gracias a nuestro enfoque personalizado y atención al detalle.</p>
+                <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
+                    <div style="text-align: center; padding: 1rem; background: rgba(139, 107, 97, 0.1); border-radius: 10px;">
+                        <h3 style="color: var(--primary); font-size: 2rem;">12+</h3>
+                        <p>Años de experiencia</p>
+                    </div>
+                    <div style="text-align: center; padding: 1rem; background: rgba(139, 107, 97, 0.1); border-radius: 10px;">
+                        <h3 style="color: var(--primary); font-size: 2rem;">50+</h3>
+                        <p>Tratamientos exclusivos</p>
+                    </div>
+                    <div style="text-align: center; padding: 1rem; background: rgba(139, 107, 97, 0.1); border-radius: 10px;">
+                        <h3 style="color: var(--primary); font-size: 2rem;">10k+</h3>
+                        <p>Clientes satisfechos</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
+        <!-- Services Section -->
         <section id="services">
-            <h2>Nuestros Servicios</h2>
-            <!-- Lista de servicios -->
+            <h2>Nuestros Servicios Exclusivos</h2>
+            <p>Descubre nuestra selección premium de tratamientos diseñados para tu bienestar integral</p>
+            
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="service-content">
+                        <h3>Masaje Relajante</h3>
+                        <p>Una experiencia de masaje suave que alivia la tensión muscular y promueve la relajación profunda.</p>
+                        <div class="service-price">$120</div>
+                        <button class="book-service" data-service="Masaje Relajante">Reservar</button>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="service-content">
+                        <h3>Tratamiento Facial Premium</h3>
+                        <p>Rejuvenecimiento facial con productos orgánicos que nutren y revitalizan tu piel.</p>
+                        <div class="service-price">$95</div>
+                        <button class="book-service" data-service="Tratamiento Facial Premium">Reservar</button>
+                    </div>
+                </div>
+                
+                <!-- Service 3 - Terapia de Piedras Calientes con nueva imagen -->
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('https://tse1.mm.bing.net/th?id=OIP.fuGhp3nCp6VVYdqhuqeLTQEsC_&pid=Api&P=0&h=180');"></div>
+                    <div class="service-content">
+                        <h3>Terapia de Piedras Calientes</h3>
+                        <p>Piedras volcánicas calientes colocadas estratégicamente para aliviar tensiones y equilibrar energía.</p>
+                        <div class="service-price">$150</div>
+                        <button class="book-service" data-service="Terapia de Piedras Calientes">Reservar</button>
+                    </div>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1540202403-b7abd6747a18?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="service-content">
+                        <h3>Paquete Spa Completo</h3>
+                        <p>Una jornada completa de bienestar que incluye masaje, facial, hidratación corporal y acceso a nuestras instalaciones.</p>
+                        <div class="service-price">$250</div>
+                        <button class="book-service" data-service="Paquete Spa Completo">Reservar</button>
+                    </div>
+                </div>
+            </div>
         </section>
 
+        <!-- Reservations Section -->
         <section id="reservations">
-            <h2>Reservas</h2>
+            <h2>Reserva Tu Experiencia</h2>
+            <p>Completa el formulario y nos pondremos en contacto contigo para confirmar tu reserva</p>
+            
             <form id="reservation-form">
-                <input type="text" placeholder="Nombre" required>
+                <input type="text" placeholder="Nombre completo" required>
                 <input type="email" placeholder="Email" required>
-                <button type="submit">Reservar</button>
+                <input type="tel" placeholder="Teléfono">
+                <select required>
+                    <option value="" disabled selected>Selecciona un servicio</option>
+                    <option>Masaje Relajante</option>
+                    <option>Tratamiento Facial Premium</option>
+                    <option>Terapia de Piedras Calientes</option>
+                    <option>Paquete Spa Completo</option>
+                    <option>Otro servicio</option>
+                </select>
+                <input type="date" placeholder="Fecha preferida" required>
+                <textarea placeholder="Mensaje adicional (opcional)" rows="3"></textarea>
+                <button type="submit">
+                    <i class="fas fa-paper-plane"></i> Enviar Reserva
+                </button>
             </form>
         </section>
 
+        <!-- Contact Section -->
         <section id="contact">
             <h2>Contacto</h2>
-            <!-- Formulario de contacto -->
+            <p>Estamos aquí para responder todas tus preguntas y ayudarte a planificar tu visita</p>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3><i class="fas fa-map-marker-alt"></i> Dirección</h3>
+                    <p>Calle Bienestar 123, Distrito Relax, Ciudad Armonía</p>
+                    
+                    <h3><i class="fas fa-phone-alt"></i> Teléfonos</h3>
+                    <p>+1 234 567 890</p>
+                    <p>+1 987 654 321</p>
+                </div>
+                
+                <div class="contact-info">
+                    <h3><i class="far fa-clock"></i> Horario</h3>
+                    <p>Lunes a Viernes: 9:00 - 20:00</p>
+                    <p>Sábados: 10:00 - 18:00</p>
+                    <p>Domingos: Cerrado</p>
+                </div>
+                
+                <div class="contact-info">
+                    <h3><i class="fas fa-envelope"></i> Email</h3>
+                    <p>reservas@luxuryspa.com</p>
+                    <p>info@luxuryspa.com</p>
+                </div>
+            </div>
+            
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+            </div>
         </section>
     </main>
 
+    <footer>
+        <p>&copy; 2023 Luxury Spa. Todos los derechos reservados.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem;">
+            <a href="#" style="color: var(--secondary); text-decoration: none;">Política de privacidad</a> | 
+            <a href="#" style="color: var(--secondary); text-decoration: none;">Términos de servicio</a>
+        </p>
+    </footer>
+
     <script>
-        // Mobile Menu
         document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu Toggle
             const mobileMenuBtn = document.querySelector('.mobile-menu');
             const navLinks = document.querySelector('.nav-links');
 
-            // Toggle menu
             if(mobileMenuBtn) {
                 mobileMenuBtn.addEventListener('click', () => {
                     navLinks.classList.toggle('active');
+                    mobileMenuBtn.innerHTML = navLinks.classList.contains('active') ? 
+                        '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
                 });
             }
 
-            // Smooth scrolling
+            // Smooth scrolling for navigation links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
                     const target = document.querySelector(this.getAttribute('href'));
                     if (target) {
+                        // Close mobile menu if open
+                        if(navLinks.classList.contains('active')) {
+                            navLinks.classList.remove('active');
+                            mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                        }
+                        
                         target.scrollIntoView({
                             behavior: 'smooth',
                             block: 'start'
@@ -228,11 +707,9 @@
                 const navbar = document.querySelector('.navbar');
                 if (navbar) {
                     if (window.scrollY > 50) {
-                        navbar.style.backgroundColor = 'rgba(62, 45, 45, 0.95)';
-                        navbar.style.padding = '0.5rem 2rem';
+                        navbar.classList.add('scrolled');
                     } else {
-                        navbar.style.backgroundColor = 'var(--dark)';
-                        navbar.style.padding = '1rem 2rem';
+                        navbar.classList.remove('scrolled');
                     }
                 }
             });
@@ -242,10 +719,84 @@
             if (reservationForm) {
                 reservationForm.addEventListener('submit', (e) => {
                     e.preventDefault();
-                    alert('Reserva enviada con éxito. Nos pondremos en contacto contigo.');
-                    reservationForm.reset();
+                    
+                    // Show loading state
+                    const submitBtn = reservationForm.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.innerHTML;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+                    submitBtn.disabled = true;
+                    
+                    // Simulate API call
+                    setTimeout(() => {
+                        // Show success message
+                        const successMsg = document.createElement('div');
+                        successMsg.innerHTML = `
+                            <div style="background: #4CAF50; color: white; padding: 1rem; border-radius: 5px; margin-top: 1rem; 
+                                animation: fadeIn 0.5s;">
+                                <i class="fas fa-check-circle"></i> ¡Reserva enviada con éxito! Nos pondremos en contacto contigo pronto.
+                            </div>
+                        `;
+                        reservationForm.appendChild(successMsg);
+                        
+                        // Reset form
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                        reservationForm.reset();
+                        
+                        // Remove message after 5 seconds
+                        setTimeout(() => {
+                            successMsg.style.animation = 'fadeOut 0.5s';
+                            setTimeout(() => successMsg.remove(), 500);
+                        }, 5000);
+                    }, 1500);
                 });
             }
+
+            // Service booking buttons
+            document.querySelectorAll('.book-service').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const serviceName = this.getAttribute('data-service');
+                    
+                    // Scroll to reservation form
+                    document.querySelector('#reservations').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Auto-fill service in form
+                    setTimeout(() => {
+                        const serviceSelect = document.querySelector('#reservation-form select');
+                        if (serviceSelect) {
+                            for (let i = 0; i < serviceSelect.options.length; i++) {
+                                if (serviceSelect.options[i].text === serviceName) {
+                                    serviceSelect.selectedIndex = i;
+                                    break;
+                                }
+                            }
+                        }
+                    }, 800);
+                });
+            });
+
+            // Animation on scroll
+            const animateOnScroll = () => {
+                const elements = document.querySelectorAll('.service-card, #about .content, #reservations h2, #reservations p, #reservation-form');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.3;
+                    
+                    if (elementPosition < screenPosition) {
+                        element.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                    }
+                });
+            };
+
+            // Initial check
+            animateOnScroll();
+            
+            // Check on scroll
+            window.addEventListener('scroll', animateOnScroll);
         });
     </script>
 </body>
